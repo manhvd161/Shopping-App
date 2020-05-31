@@ -36,6 +36,14 @@ const UserProductsScreen = (props) => {
     ]);
   };
 
+  if (userProducts.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Không có sản phẩm nào!</Text>
+      </View>
+    );
+  }
+
   return (
     <FlatList
       data={userProducts}

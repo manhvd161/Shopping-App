@@ -8,6 +8,7 @@ import {
   Button,
   ActivityIndicator,
   Alert,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Input from '../../components/UI/Input';
@@ -106,7 +107,7 @@ const AuthScreen = (props) => {
   return (
     <KeyboardAvoidingView
       behavior='padding'
-      keyboardVerticalOffset={50}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -500}
       style={styles.screen}
     >
       <LinearGradient colors={['#ffedff', '#ffe3ff']} style={styles.gradient}>
