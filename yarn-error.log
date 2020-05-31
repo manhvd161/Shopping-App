@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js add react-native-gesture-handler: ~1.6.0,
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.17.3/libexec/bin/yarn.js add expo-linear-gradien
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/3.8/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/opt/local/bin:/opt/local/sbin
@@ -14,17 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: react-native-gesture-handler:: Invalid URI "react-native-gesture-handler:/"
-      at Request.module.exports.Request.init (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140552:31)
-      at new Request (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140406:8)
-      at request (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:137312:10)
-      at RequestManager.execute (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66882:15)
-      at RequestManager.shiftQueue (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66920:10)
-      at /usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66599:13
-      at new Promise (<anonymous>)
-      at new F (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:5296:28)
-      at RequestManager.request (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66597:19)
-      at NpmRegistry.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:31694:42)
+  Error: https://registry.yarnpkg.com/expo-linear-gradien: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:66830:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:140464:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141436:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.17.3/libexec/lib/cli.js:141358:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1145:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -39,12 +39,15 @@ npm manifest:
     "dependencies": {
       "@react-native-community/masked-view": "^0.1.10",
       "expo": "~37.0.3",
+      "expo-font": "^8.1.1",
+      "moment": "^2.25.3",
       "react": "~16.9.0",
       "react-dom": "~16.9.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
-      "react-native-gesture-handler": "~1.6.0",
+      "react-native-gesture-handler": "^1.6.1",
       "react-native-reanimated": "~1.7.0",
       "react-native-safe-area-context": "^0.7.3",
+      "react-native-screens": "^2.7.0",
       "react-native-web": "~0.11.7",
       "react-navigation": "^4.3.9",
       "react-navigation-drawer": "^2.4.13",
@@ -52,11 +55,13 @@ npm manifest:
       "react-navigation-stack": "^2.4.0",
       "react-navigation-tabs": "^2.8.13",
       "react-redux": "^7.2.0",
-      "redux": "^4.0.5"
+      "redux": "^4.0.5",
+      "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
       "@babel/core": "^7.8.6",
-      "babel-preset-expo": "~8.1.0"
+      "babel-preset-expo": "~8.1.0",
+      "redux-devtools-extension": "^2.13.8"
     },
     "private": true
   }
@@ -2376,7 +2381,7 @@ Lockfile:
     dependencies:
       uuid "^3.4.0"
   
-  expo-font@~8.1.0:
+  expo-font@^8.1.1, expo-font@~8.1.0:
     version "8.1.1"
     resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-8.1.1.tgz#40de629d7332887bdafae4756741f6979fc0043e"
     integrity sha512-z6008K7YSA7wpJ1mNyG2eSYUhEoFVjdL2uAbwaHFpsqwxDS4tcdKHoWkanIUiEnsjtHK7Uk0ywKJ8MRzmCaklw==
@@ -3794,6 +3799,11 @@ Lockfile:
     dependencies:
       minimist "^1.2.5"
   
+  moment@^2.25.3:
+    version "2.25.3"
+    resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
+    integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
+  
   morgan@^1.9.0:
     version "1.10.0"
     resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.10.0.tgz#091778abc1fc47cd3509824653dae1faab6b17d7"
@@ -4398,7 +4408,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
     integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
   
-  react-native-gesture-handler@~1.6.0:
+  react-native-gesture-handler@^1.6.1:
     version "1.6.1"
     resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
     integrity sha512-gQgIKhDiYf754yzhhliagLuLupvGb6ZyBdzYzr7aus3Fyi87TLOw63ers+r4kGw0h26oAWTAdHd34JnF4NeL6Q==
@@ -4436,6 +4446,11 @@ Lockfile:
     integrity sha512-WII/ulhpVyL/qbYb7vydq7dJAfZRBcEhg4/UWt6F6nAKpLa3gAceMOxBxI914ppwSP/TdUsandFy6lkJQE0z4A==
     dependencies:
       hoist-non-react-statics "^2.3.1"
+  
+  react-native-screens@^2.7.0:
+    version "2.7.0"
+    resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.7.0.tgz#2d3cf3c39a665e9ca1c774264fccdb90e7944047"
+    integrity sha512-n/23IBOkrTKCfuUd6tFeRkn3lB2QZ3cmvoubRscR0JU/Zl4/ZyKmwnFmUv1/Fr+2GH/H8UTX59kEKDYYg3dMgA==
   
   react-native-tab-view@^2.11.0:
     version "2.14.0"
@@ -4595,6 +4610,16 @@ Lockfile:
       safe-buffer "~5.1.1"
       string_decoder "~1.1.1"
       util-deprecate "~1.0.1"
+  
+  redux-devtools-extension@^2.13.8:
+    version "2.13.8"
+    resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+    integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
+  
+  redux-thunk@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+    integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
   
   redux@^4.0.5:
     version "4.0.5"
