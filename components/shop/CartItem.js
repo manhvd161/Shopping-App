@@ -16,7 +16,7 @@ const CartItem = (props) => {
         <Text style={styles.mainText}>{props.title}</Text>
       </View>
       <View style={styles.itemData}>
-        <Text style={styles.mainText}>${props.amount.toFixed(2)}</Text>
+        <Text style={styles.mainText}>{props.amount.toLocaleString()}đ</Text>
         {props.deletable && (
           <TouchableOpacity
             onPress={props.onRemove}

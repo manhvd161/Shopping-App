@@ -52,7 +52,10 @@ const CartScreen = (props) => {
         <Text style={styles.summaryText}>
           Tổng số tiền:{' '}
           <Text style={styles.amount}>
-            ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+            {(
+              Math.round(cartTotalAmount.toFixed(2) * 100) / 100
+            ).toLocaleString()}
+            đ
           </Text>
         </Text>
         {isLoading ? (
