@@ -24,7 +24,7 @@ const UserProductsScreen = (props) => {
   };
 
   const deleteHandler = (id) => {
-    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
+    Alert.alert('Bạn chắc chứ?', 'Bạn thực sự muốn xoá sản phẩm này?', [
       { text: 'No', style: 'default' },
       {
         text: 'Yes',

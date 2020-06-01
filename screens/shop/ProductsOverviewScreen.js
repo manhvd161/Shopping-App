@@ -22,8 +22,12 @@ const ProductsOverviewScreen = (props) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState();
   const products = useSelector((state) => state.products.availableProducts);
+  const userProducts = useSelector((state) => state.products.userProducts);
+  console.log(userProducts);
+  const userId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
-  const totalProductOnCart = useSelector((state) => state.cart.items);
+  const totalProductOnCart = useSelector((state) => state.cart.quantityCart);
+  console.log(useSelector((state) => state.cart.items));
 
   const loadProducts = useCallback(async () => {
     setError(null);
@@ -109,11 +113,17 @@ const ProductsOverviewScreen = (props) => {
               selectItemHandler(itemData.item.id, itemData.item.title)
             }
           />
-          <Button
-            color={Colors.primary}
-            title='Thêm vào giỏ'
-            onPress={() => dispatch(cartActions.addToCart(itemData.item))}
-          />
+          {itemData.item.ownerId !== userId ? (
+            <Button
+              color={Colors.primary}
+              title='Thêm vào giỏ'
+              onPress={() => dispatch(cartActions.addToCart(itemData.item))}
+            />
+          ) : (
+            <Text style={{ color: Colors.primary, fontSize: 18 }}>
+              Sản phẩm của tôi
+            </Text>
+          )}
         </ProductItem>
       )}
     />
@@ -137,7 +147,11 @@ ProductsOverviewScreen.navigationOptions = (navData) => {
     ),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        {/* <Text>{totalProductOnCart}</Text> */}
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View>
+            <Text style={styles.quantityCart}>{totalProductOnCart}</Text>
+          </View>
+        </View>
         <Item
           title='Cart'
           iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
@@ -155,6 +169,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  quantityCart: {
+    color: Colors.primary,
+    marginRight: -6,
   },
 });
 
