@@ -45,7 +45,6 @@ export const fetchProducts = () => {
 };
 
 export const deleteProduct = (productId) => {
-  console.log(productId);
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
@@ -101,7 +100,7 @@ export const createProduct = (title, description, imageUrl, price) => {
   };
 };
 
-export const updateProduct = (id, title, description, imageUrl) => {
+export const updateProduct = (id, title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
@@ -115,6 +114,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
           title,
           description,
           imageUrl,
+          price,
         }),
       }
     );
@@ -130,6 +130,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
         title,
         description,
         imageUrl,
+        price,
       },
     });
   };

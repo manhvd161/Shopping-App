@@ -27,7 +27,6 @@ const ProductsOverviewScreen = (props) => {
   const userId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
   const totalProductOnCart = useSelector((state) => state.cart.quantityCart);
-  console.log(useSelector((state) => state.cart.items));
 
   const loadProducts = useCallback(async () => {
     setError(null);
