@@ -138,12 +138,11 @@ const AuthScreen = (props) => {
                 onInputChange={inputChangeHandler}
                 initialValue=''
               />
-              {/* {isSignup && (
+              {isSignup && (
                 <Input
                   id='name'
                   label='Tên'
                   keyboardType='default'
-                  secureTextEntry
                   required
                   // minLength={5}
                   autoCapitalize='none'
@@ -155,17 +154,16 @@ const AuthScreen = (props) => {
               {isSignup && (
                 <Input
                   id='phone'
-                  label='Tên'
+                  label='Số điện thoại'
                   keyboardType='default'
-                  secureTextEntry
                   required
-                  // minLength={5}
+                  minLength={9}
                   autoCapitalize='none'
-                  errorText='Tên không hợp lệ.'
+                  errorText='Số điện thoại không hợp lệ.'
                   onInputChange={inputChangeHandler}
                   initialValue=''
                 />
-              )} */}
+              )}
               <View style={styles.buttonContainer}>
                 {isLoading ? (
                   <ActivityIndicator size='large' color={Colors.primary} />
