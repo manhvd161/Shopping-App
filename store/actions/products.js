@@ -18,7 +18,6 @@ export const fetchProducts = () => {
       }
 
       const resData = await response.json();
-      console.log(resData);
       const loadedProducts = [];
 
       for (const key in resData) {

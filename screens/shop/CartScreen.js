@@ -50,7 +50,7 @@ const CartScreen = (props) => {
     <View style={styles.screen}>
       <Card style={styles.summary}>
         <Text style={styles.summaryText}>
-          Total:{' '}
+          Tổng số tiền:{' '}
           <Text style={styles.amount}>
             ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
           </Text>
@@ -59,7 +59,7 @@ const CartScreen = (props) => {
           <ActivityIndicator size='small' color={Colors.primary} />
         ) : (
           <Button
-            title='Order Now'
+            title='Đặt hàng'
             color={Colors.accent}
             disabled={cartItems.length <= 0 ? true : false}
             onPress={addOrderHandler}
@@ -84,7 +84,7 @@ const CartScreen = (props) => {
 };
 
 CartScreen.navigationOptions = {
-  headerTitle: 'Your Cart',
+  headerTitle: 'Giỏ hàng của bạn',
 };
 
 export default CartScreen;

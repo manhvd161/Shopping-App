@@ -16,6 +16,7 @@ import Card from '../../components/UI/Card';
 import Colors from '../../constants/Colors';
 import * as authActions from '../../store/actions/auth';
 import { useDispatch } from 'react-redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -111,56 +112,73 @@ const AuthScreen = (props) => {
       style={styles.screen}
     >
       <LinearGradient colors={['#ffedff', '#ffe3ff']} style={styles.gradient}>
-        <Card style={styles.authContainer}>
-          <ScrollView>
-            <Input
-              id='email'
-              label='Email'
-              keyboardType='email-address'
-              required
-              email
-              autoCapitalize='none'
-              errorText='Địa chỉ email không hợp lệ.'
-              onInputChange={inputChangeHandler}
-              initialValue=''
-            />
-            <Input
-              id='password'
-              label='Mật khẩu'
-              keyboardType='default'
-              secureTextEntry
-              required
-              minLength={5}
-              autoCapitalize='none'
-              errorText='Mật khẩu không hợp lệ.'
-              onInputChange={inputChangeHandler}
-              initialValue=''
-            />
-            <View style={styles.buttonContainer}>
-              {isLoading ? (
-                <ActivityIndicator size='large' color={Colors.primary} />
-              ) : (
-                <Button
-                  title={isSignup ? 'Đăng ký' : 'Đăng nhập'}
-                  color={Colors.primary}
-                  onPress={authHandler}
-                />
-              )}
-            </View>
-
-            <View style={styles.buttonContainer}>
-              <Button
-                title={
-                  isSignup ? 'Tôi đã có tài khoản' : 'Tôi chưa có tài khoản'
-                }
-                color={Colors.accent}
-                onPress={() => {
-                  setIsSignup((prevState) => !prevState);
-                }}
+        <View style={styles.gradient}>
+          <Card style={styles.authContainer}>
+            <ScrollView>
+              <Input
+                id='email'
+                label='Email'
+                keyboardType='email-address'
+                required
+                email
+                autoCapitalize='none'
+                errorText='Địa chỉ email không hợp lệ.'
+                onInputChange={inputChangeHandler}
+                initialValue=''
               />
-            </View>
-          </ScrollView>
-        </Card>
+              <Input
+                id='password'
+                label='Mật khẩu'
+                keyboardType='default'
+                secureTextEntry
+                required
+                minLength={5}
+                autoCapitalize='none'
+                errorText='Mật khẩu không hợp lệ.'
+                onInputChange={inputChangeHandler}
+                initialValue=''
+              />
+              <View style={styles.buttonContainer}>
+                {isLoading ? (
+                  <ActivityIndicator size='large' color={Colors.primary} />
+                ) : (
+                  <Button
+                    title={isSignup ? 'Đăng ký' : 'Đăng nhập'}
+                    color={Colors.primary}
+                    onPress={authHandler}
+                  />
+                )}
+              </View>
+
+              <View style={styles.buttonContainer}>
+                {/* <Button
+                  title={
+                    isSignup ? 'Tôi đã có tài khoản' : 'Tôi chưa có tài khoản'
+                  }
+                  color={Colors.accent}
+                  onPress={() => {
+                    setIsSignup((prevState) => !prevState);
+                  }}
+                /> */}
+                <TouchableOpacity
+                  style={{ alignItems: 'flex-end' }}
+                  onPress={() => {
+                    setIsSignup((prevState) => !prevState);
+                  }}
+                >
+                  <Text
+                    style={{
+                      textDecorationLine: 'underline',
+                      color: Colors.accent,
+                    }}
+                  >
+                    {isSignup ? 'Tôi đã có tài khoản' : 'Tôi chưa có tài khoản'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+          </Card>
+        </View>
       </LinearGradient>
     </KeyboardAvoidingView>
   );

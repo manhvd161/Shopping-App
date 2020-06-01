@@ -56,12 +56,12 @@ const UserProductsScreen = (props) => {
         >
           <Button
             color={Colors.primary}
-            title='Edit'
+            title='Chỉnh sửa'
             onPress={() => editProductHander(itemData.item.id)}
           />
           <Button
             color={Colors.primary}
-            title='Delete'
+            title='Xoá'
             onPress={() => deleteHandler(itemData.item.id)}
           />
         </ProductItem>
@@ -72,7 +72,7 @@ const UserProductsScreen = (props) => {
 
 UserProductsScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'Your Products',
+    headerTitle: 'Sản phẩm của bạn',
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

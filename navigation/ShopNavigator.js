@@ -92,9 +92,9 @@ const AdminNavigator = createStackNavigator(
 
 const ShopNavigator = createDrawerNavigator(
   {
-    Products: ProductsNavigator,
-    Orders: OrdersNavigator,
-    Admin: AdminNavigator,
+    'Sản phẩm': ProductsNavigator,
+    'Đơn hàng': OrdersNavigator,
+    'Quản lý': AdminNavigator,
   },
   {
     contentOptions: {

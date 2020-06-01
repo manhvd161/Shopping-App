@@ -146,8 +146,8 @@ const EditProductScreen = (props) => {
         <View style={styles.form}>
           <Input
             id='title'
-            label='Title'
-            errorText='Please enter a valid title!'
+            label='Tên sản phẩm'
+            errorText='Tên sản phẩm không hợp lệ!'
             keyboardType='default'
             autoCapitalize='sentences'
             autoCorrect
@@ -159,8 +159,8 @@ const EditProductScreen = (props) => {
           />
           <Input
             id='imageUrl'
-            label='Image Url'
-            errorText='Please enter a valid image url!'
+            label='Đường dẫn'
+            errorText='Đường dẫn không hợp lệ!'
             keyboardType='default'
             returnKeyType='next'
             onInputChange={inputChangeHandler}
@@ -171,8 +171,8 @@ const EditProductScreen = (props) => {
           {editedProduct ? null : (
             <Input
               id='price'
-              label='Price'
-              errorText='Please enter a valid price!'
+              label='Giá'
+              errorText='Giá không hợp lệ!'
               keyboardType='decimal-pad'
               returnKeyType='next'
               onInputChange={inputChangeHandler}
@@ -182,8 +182,8 @@ const EditProductScreen = (props) => {
           )}
           <Input
             id='description'
-            label='Description'
-            errorText='Please enter a valid description!'
+            label='Mô tả'
+            errorText='Mô tả không hợp lệ!'
             keyboardType='default'
             autoCapitalize='sentences'
             autoCorrect
@@ -205,8 +205,8 @@ EditProductScreen.navigationOptions = (navData) => {
   const submitFn = navData.navigation.getParam('submit');
   return {
     headerTitle: navData.navigation.getParam('productId')
-      ? 'Edit Product'
-      : 'Add Product',
+      ? 'Sửa sản phẩm'
+      : 'Thêm sản phẩm',
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

@@ -65,7 +65,7 @@ const OrdersScreen = (props) => {
 
 OrdersScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'Your Orders',
+    headerTitle: 'Đơn hàng của bạn',
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

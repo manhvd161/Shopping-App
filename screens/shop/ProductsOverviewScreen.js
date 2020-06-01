@@ -23,6 +23,7 @@ const ProductsOverviewScreen = (props) => {
   const [error, setError] = useState();
   const products = useSelector((state) => state.products.availableProducts);
   const dispatch = useDispatch();
+  const totalProductOnCart = useSelector((state) => state.cart.items);
 
   const loadProducts = useCallback(async () => {
     setError(null);
@@ -34,6 +35,10 @@ const ProductsOverviewScreen = (props) => {
     }
     setIsRefreshing(false);
   }, [dispatch, setIsLoading, setError]);
+
+  useEffect(() => {
+    props.navigation.setParams({ totalProductOnCart });
+  }, [totalProductOnCart]);
 
   useEffect(() => {
     const willFocusSub = props.navigation.addListener(
@@ -99,14 +104,14 @@ const ProductsOverviewScreen = (props) => {
         >
           <Button
             color={Colors.primary}
-            title='View Details'
+            title='Xem chi tiết'
             onPress={() =>
               selectItemHandler(itemData.item.id, itemData.item.title)
             }
           />
           <Button
             color={Colors.primary}
-            title='To Cart'
+            title='Thêm vào giỏ'
             onPress={() => dispatch(cartActions.addToCart(itemData.item))}
           />
         </ProductItem>
@@ -116,8 +121,9 @@ const ProductsOverviewScreen = (props) => {
 };
 
 ProductsOverviewScreen.navigationOptions = (navData) => {
+  const totalProductOnCart = navData.navigation.getParam('totalProductOnCart');
   return {
-    headerTitle: 'All products',
+    headerTitle: 'Tất cả sản phẩm',
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
@@ -131,6 +137,7 @@ ProductsOverviewScreen.navigationOptions = (navData) => {
     ),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        {/* <Text>{totalProductOnCart}</Text> */}
         <Item
           title='Cart'
           iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
