@@ -16,7 +16,9 @@ const CartItem = (props) => {
         <Text style={styles.mainText}>{props.title}</Text>
       </View>
       <View style={styles.itemData}>
-        <Text style={styles.mainText}>{props.amount.toLocaleString()}đ</Text>
+        <Text style={styles.mainText}>
+          {props.amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}đ
+        </Text>
         {props.deletable && (
           <TouchableOpacity
             onPress={props.onRemove}

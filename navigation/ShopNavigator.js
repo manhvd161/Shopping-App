@@ -19,6 +19,7 @@ import EditProductScreen from '../screens/user/EditProductScreen';
 import AuthScreen from '../screens/user/AuthScreen';
 import StartupScreen from '../screens/StartupScreen';
 import * as authActions from '../store/actions/auth';
+import * as cartActions from '../store/actions/cart';
 
 const defaultNavigationOptions = {
   headerStyle: {
@@ -110,6 +111,7 @@ const ShopNavigator = createDrawerNavigator(
               title='Đăng xuất'
               color={Colors.primary}
               onPress={() => {
+                dispatch(cartActions.resetCart());
                 dispatch(authActions.logout());
                 props.navigation.navigate('Auth');
               }}

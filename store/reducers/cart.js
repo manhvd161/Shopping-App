@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
+import { ADD_TO_CART, REMOVE_FROM_CART, RESET_CART } from '../actions/cart';
 import CartItem from '../../models/cart-item';
 import { ADD_ORDER } from '../actions/orders';
 import { DELETE_PRODUCT } from '../actions/products';
@@ -65,6 +65,7 @@ export default (state = initialState, action) => {
         quantityCart: state.quantityCart - 1,
       };
     case ADD_ORDER:
+    case RESET_CART:
       return initialState;
     case DELETE_PRODUCT:
       if (!state.items[action.pid]) {

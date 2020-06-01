@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   quantityCart: {
-    color: Colors.primary,
+    color: Platform.OS === 'ios' ? Colors.primary : 'white',
     marginRight: -6,
   },
 });
