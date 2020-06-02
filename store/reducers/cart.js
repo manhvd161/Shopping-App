@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, RESET_CART } from '../actions/cart';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  RESET_CART,
+  INCREASE_PRODUCT_ON_CART,
+} from '../actions/cart';
 import CartItem from '../../models/cart-item';
 import { ADD_ORDER } from '../actions/orders';
 import { DELETE_PRODUCT } from '../actions/products';
@@ -48,15 +53,16 @@ export default (state = initialState, action) => {
         quantityCart: state.quantityCart + 1,
       };
     case REMOVE_FROM_CART:
-      const selectedCartItem = state.items[action.pid];
-      const currentQty = selectedCartItem.quantity;
+      let selectedCartItem = state.items[action.pid];
+      let currentQty = selectedCartItem.quantity;
       let updatedCartItems;
       if (currentQty > 1) {
         const updatedCartItem = new CartItem(
           selectedCartItem.quantity - 1,
           selectedCartItem.productPrice,
           selectedCartItem.productTitle,
-          selectedCartItem.sum - selectedCartItem.productPrice
+          selectedCartItem.sum - selectedCartItem.productPrice,
+          selectedCartItem.imageUrl
         );
         updatedCartItems = {
           ...state.items,
@@ -71,6 +77,32 @@ export default (state = initialState, action) => {
         items: updatedCartItems,
         totalAmount: state.totalAmount - selectedCartItem.productPrice,
         quantityCart: state.quantityCart - 1,
+      };
+    case INCREASE_PRODUCT_ON_CART:
+      selectedCartItem = state.items[action.pid];
+      currentQty = selectedCartItem.quantity;
+      // if (currentQty > 1) {
+      const updatedCartItem = new CartItem(
+        selectedCartItem.quantity + 1,
+        selectedCartItem.productPrice,
+        selectedCartItem.productTitle,
+        selectedCartItem.sum + selectedCartItem.productPrice,
+        selectedCartItem.imageUrl
+      );
+      updatedCartItems = {
+        ...state.items,
+        [action.pid]: updatedCartItem,
+      };
+      // }
+      //  else {
+      //   updatedCartItems = { ...state.items };
+      //   delete updatedCartItems[action.pid];
+      // }
+      return {
+        ...state,
+        items: updatedCartItems,
+        totalAmount: state.totalAmount + selectedCartItem.productPrice,
+        quantityCart: state.quantityCart + 1,
       };
     case ADD_ORDER:
     case RESET_CART:

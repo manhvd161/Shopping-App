@@ -41,6 +41,10 @@ const CartScreen = (props) => {
     dispatch(cartActions.removeFromCart(productId));
   };
 
+  const increaseItemHandle = (productId) => {
+    dispatch(cartActions.increaseProductOnCart(productId));
+  };
+
   const addOrderHandler = async () => {
     setIsLoading(true);
     await dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
@@ -81,6 +85,7 @@ const CartScreen = (props) => {
             imageUrl={itemData.item.imageUrl}
             deletable
             onRemove={() => removeItemHandler(itemData.item.productId)}
+            onIncrease={() => increaseItemHandle(itemData.item.productId)}
           />
         )}
       />

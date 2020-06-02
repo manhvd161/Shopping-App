@@ -11,6 +11,8 @@ import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
 import authReducer from './store/reducers/auth';
 import NavigationContainer from './navigation/NavigationContainer';
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Setting a timer']);
 
 const rootReducer = combineReducers({
   auth: authReducer,
