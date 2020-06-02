@@ -63,6 +63,10 @@ const AuthScreen = (props) => {
   });
 
   useEffect(() => {
+    props.navigation.setParams({ isSignup });
+  }, [isSignup]);
+
+  useEffect(() => {
     if (error) {
       Alert.alert('Lỗi xảy ra!', error, [{ text: 'Okay' }]);
     }
@@ -210,8 +214,11 @@ const AuthScreen = (props) => {
   );
 };
 
-AuthScreen.navigationOptions = {
-  headerTitle: 'Xác thực',
+AuthScreen.navigationOptions = (navData) => {
+  const isSignup = navData.navigation.getParam('isSignup');
+  return {
+    headerTitle: isSignup ? 'Đăng ký' : 'Đăng nhập',
+  };
 };
 
 export default AuthScreen;
@@ -230,7 +237,7 @@ const styles = StyleSheet.create({
   authContainer: {
     width: '80%',
     maxWidth: 400,
-    maxHeight: 400,
+    maxHeight: 500,
     padding: 20,
   },
   buttonContainer: {
