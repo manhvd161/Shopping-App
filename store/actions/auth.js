@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { googleAuthRoute, keyFirebase } from '../../constants/constants';
 
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
@@ -15,7 +16,7 @@ export const authenticate = (userId, token, expiryTime) => {
 export const signup = (email, password) => {
   return async (dispatch) => {
     const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyClGUjBfDc5jS5s7-aWV4T1BnTvL88YNwQ',
+      `${googleAuthRoute}/accounts:signUp?key=${keyFirebase}`,
       {
         method: 'POST',
         headers: {
@@ -58,7 +59,7 @@ export const signup = (email, password) => {
 export const login = (email, password) => {
   return async (dispatch) => {
     const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyClGUjBfDc5jS5s7-aWV4T1BnTvL88YNwQ',
+      `${googleAuthRoute}/accounts:signInWithPassword?key=${keyFirebase}`,
       {
         method: 'POST',
         headers: {

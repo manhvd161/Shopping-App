@@ -1,4 +1,5 @@
 import Order from '../../models/order';
+import { baseRoute } from '../../constants/constants';
 
 export const ADD_ORDER = 'ADD_ORDER';
 export const SET_ORDERS = 'SET_ORDERS';
@@ -7,9 +8,7 @@ export const fetchOrders = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     try {
-      const response = await fetch(
-        `https://rn-shopping-app-3a3d1.firebaseio.com/orders/${userId}.json`
-      );
+      const response = await fetch(`${baseRoute}/orders/${userId}.json`);
 
       if (!response.ok) {
         throw new Error('Đã có lỗi xảy ra!');
@@ -42,7 +41,7 @@ export const addOrder = (cartItems, totalAmount) => {
     const userId = getState().auth.userId;
     const date = new Date();
     const response = await fetch(
-      `https://rn-shopping-app-3a3d1.firebaseio.com/orders/${userId}.json?auth=${token}`,
+      `${baseRoute}/orders/${userId}.json?auth=${token}`,
       {
         method: 'POST',
         headers: {

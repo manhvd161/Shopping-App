@@ -1,4 +1,5 @@
 import Product from '../../models/product';
+import { baseRoute } from '../../constants/constants';
 
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
@@ -9,9 +10,7 @@ export const fetchProducts = () => {
   return async (dispatch, getState) => {
     const userId = getState().auth.userId;
     try {
-      const response = await fetch(
-        'https://rn-shopping-app-3a3d1.firebaseio.com/products.json'
-      );
+      const response = await fetch(`${baseRoute}/products.json`);
 
       if (!response.ok) {
         throw new Error('Đã có lỗi xảy ra!');
@@ -48,7 +47,7 @@ export const deleteProduct = (productId) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://rn-shopping-app-3a3d1.firebaseio.com/products/${productId}.json?auth=${token}`,
+      `${baseRoute}/${productId}.json?auth=${token}`,
       {
         method: 'DELETE',
       }
@@ -67,22 +66,19 @@ export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
-    const response = await fetch(
-      `https://rn-shopping-app-3a3d1.firebaseio.com/products.json?auth=${token}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          title,
-          description,
-          imageUrl,
-          price,
-          ownerId: userId,
-        }),
-      }
-    );
+    const response = await fetch(`${baseRoute}/products.json?auth=${token}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        description,
+        imageUrl,
+        price,
+        ownerId: userId,
+      }),
+    });
 
     const resData = await response.json();
 
@@ -104,7 +100,7 @@ export const updateProduct = (id, title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://rn-shopping-app-3a3d1.firebaseio.com/products/${id}.json?auth=${token}`,
+      `${baseRoute}/products/${id}.json?auth=${token}`,
       {
         method: 'PATCH',
         headers: {
