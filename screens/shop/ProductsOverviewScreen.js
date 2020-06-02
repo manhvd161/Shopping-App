@@ -23,7 +23,6 @@ const ProductsOverviewScreen = (props) => {
   const [error, setError] = useState();
   const products = useSelector((state) => state.products.availableProducts);
   const userProducts = useSelector((state) => state.products.userProducts);
-  console.log(userProducts);
   const userId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
   const totalProductOnCart = useSelector((state) => state.cart.quantityCart);

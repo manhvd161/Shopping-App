@@ -27,6 +27,7 @@ const CartScreen = (props) => {
         productPrice: state.cart.items[key].productPrice,
         quantity: state.cart.items[key].quantity,
         sum: state.cart.items[key].sum,
+        imageUrl: state.cart.items[key].imageUrl,
       });
     }
     return transformedCartItems.sort((a, b) =>
@@ -52,9 +53,9 @@ const CartScreen = (props) => {
         <Text style={styles.summaryText}>
           Tổng số tiền:{' '}
           <Text style={styles.amount}>
-            {(
-              Math.round(cartTotalAmount.toFixed(2) * 100) / 100
-            ).toLocaleString()}
+            {(Math.round(cartTotalAmount * 100) / 100)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             đ
           </Text>
         </Text>
@@ -77,6 +78,7 @@ const CartScreen = (props) => {
             quantity={itemData.item.quantity}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
+            imageUrl={itemData.item.imageUrl}
             deletable
             onRemove={() => removeItemHandler(itemData.item.productId)}
           />
