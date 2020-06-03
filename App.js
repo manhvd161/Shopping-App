@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import Thunk from 'redux-thunk';
 
 import productsReducer from './store/reducers/products';
