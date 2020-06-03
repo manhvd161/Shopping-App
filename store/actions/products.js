@@ -47,7 +47,7 @@ export const deleteProduct = (productId) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `${baseRoute}/${productId}.json?auth=${token}`,
+      `${baseRoute}/products/${productId}.json?auth=${token}`,
       {
         method: 'DELETE',
       }
